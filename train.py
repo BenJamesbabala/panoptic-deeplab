@@ -8,7 +8,7 @@ import torch.nn as nn
 dev='cpu' # Default setting
 if torch.cuda.is_available():
 	dev='cuda'
-
+	
 
 # Loading the complete architecture here
 model = ResnetBackbone().to(dev)
