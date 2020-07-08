@@ -1,5 +1,5 @@
 from nets import ResnetBackbone
-from utils import datasets
+from utils import datasetCityScape
 
 import torch
 import torch.nn as nn
