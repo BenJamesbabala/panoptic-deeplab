@@ -1,5 +1,7 @@
 # Data Directory
-data/cityscapes/*
+data/cityscapes/train/*
+data/cityscapes/val/*
+data/cityscapes/test/*
 
 
 # Keep the .gitkeep file
