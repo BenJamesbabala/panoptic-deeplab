@@ -11,7 +11,7 @@ if torch.cuda.is_available():
 	dev='cuda'
 
 
-cityspcape = datasetCityScpape()
+cityspcape = datasetCityScape()
 
 print(cityspcape)
 
