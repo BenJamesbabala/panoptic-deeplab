@@ -11,9 +11,8 @@ if torch.cuda.is_available():
 	dev='cuda'
 
 
-cityspcape = datasetCityScape()
-
-print(cityspcape)
+cityspcape_data = datasetCityScape()
+print(cityspcape_data)
 
 # Loading the complete architecture here
 model = ResnetBackbone().to(dev)
