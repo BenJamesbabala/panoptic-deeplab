@@ -4,8 +4,13 @@ import torch
 
 
 
-def weightes_bootstrapped_CEL(k_fraction=0.15, pixels_x=1080, pixels_y=1080):
+def weighted_bootstrapped_CEL(K=0.15, N=1025*2049):
+	'''
+	The Deafult args are for the 'Cityscape' dataset from the paper. 
+	They train it on the Images of size (1025*2049)
+	'''
 
 	
 	
-	pass
+	
+	return
