@@ -1,4 +1,5 @@
 from nets import ResnetBackbone
+from utils import datasets
 
 import torch
 import torch.nn as nn
@@ -8,7 +9,11 @@ import torch.nn as nn
 dev='cpu' # Default setting
 if torch.cuda.is_available():
 	dev='cuda'
-	
+
+
+cityspcape = datasetCityScpape()
+
+print(cityspcape)
 
 # Loading the complete architecture here
 model = ResnetBackbone().to(dev)
