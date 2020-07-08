@@ -12,12 +12,12 @@ def load_cityscape():
 	return
 
 
-class datasetCityScpape(object):
+class datasetCityScape(object):
 	"""
-	docstring for datasetCityScpape
+	docstring for datasetCityScape
 	"""
 	def __init__(self):
-		super(datasetCityScpape, self).__init__()
+		super(datasetCityScape, self).__init__()
 
 
 
