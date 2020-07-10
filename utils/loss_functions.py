@@ -3,10 +3,10 @@ import torch.nn as nn
 
 
 
-def weighted_bootstrapped_CEL(predictions, labels, weight=1.0, K=0.15, N=1025*2049):
+def weighted_bootstrapped_CEL(predictions, labels, weight=1.0, K=0.15, N=641*641):
 	'''
-	The Deafult args are for the 'Cityscape' dataset from the paper. 
-	They train it on the Images of size (1025*2049)
+	The Deafult args are for the 'COCO' dataset from the paper. 
+	They train it on the Images of size (641*641)
 	'''
  
 
