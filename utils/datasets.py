@@ -5,19 +5,14 @@ import torchvision.datasets as datasets
 import torch.nn.functional as F
 
 
-def load_cityscape():
 
-	return datasets.Cityscapes('./data/cityscapes', split='train', mode='fine', target_type=['semantic','instance'])
-
-
-
-class datasetCityScape(object):
+class cocoDataset():
 	"""
-	docstring for datasetCityScape
+	docstring for cocoDataset
 	"""
+
 	def __init__(self):
-		super(datasetCityScape, self).__init__()
+		super(cocoDataset, self).__init__()
+		
 
-
-
-		self.data = load_cityscape()		
+	
