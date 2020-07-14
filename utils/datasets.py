@@ -6,7 +6,7 @@ import torch.nn.functional as F
 
 
 
-class cocoDataset():
+class COCOPanopticDataset():
 	"""
 	docstring for cocoDataset
 	"""
