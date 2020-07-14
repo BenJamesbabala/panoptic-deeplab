@@ -4,14 +4,12 @@ import copy
 
 if __name__ == '__main__':
 	with open('panoptic_val2017.json', "r") as f:
-		coco_json = json.load(f)
-
+		coco_json = json.load(f)	
 
 	coco_trainid_json = copy.deepcopy(coco_json)
 	coco_cats = coco_json.pop('categories')
 	coco_anns = coco_json.pop('annotations')
-	print(coco_cats)
-
+	
 	coco_train_id_to_eval_id = [coco_cat['id'] for coco_cat in coco_cats]
 
 	coco_eval_id_to_train_id = {v: k for k, v in enumerate(coco_train_id_to_eval_id)}
