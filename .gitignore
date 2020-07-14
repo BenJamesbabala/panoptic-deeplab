@@ -3,6 +3,8 @@ data/cityscapes/train/*
 data/cityscapes/val/*
 data/cityscapes/test/*
 
+# Json files
+*.json
 
 # Keep the .gitkeep file
 !**/.gitkeep
