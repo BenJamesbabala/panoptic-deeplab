@@ -6,5 +6,8 @@ data/cityscapes/test/*
 # Json files
 *.json
 
+# .DS_Store
+*.DS_Store
+
 # Keep the .gitkeep file
 !**/.gitkeep
