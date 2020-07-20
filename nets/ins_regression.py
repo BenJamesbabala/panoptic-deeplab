@@ -1,13 +1,14 @@
 import torch
 import torch.nn as nn
 
-class insRegression(object):
+class insRegression(nn.Module):
 	"""
 	docstring for insRegression
 	"""
 
 	def __init__(self):
-		super(insRegression, self, num_output=2).__init__()
+		super(insRegression, self, num_classes=2).__init__()
+		self.num_classes = num_classes
 
 		self.conv5x5 = nn.Conv2d(
 			in_channels = 128,
@@ -25,7 +26,7 @@ class insRegression(object):
 
 		self.conv1x1 = nn.Conv2d(
 			in_channels = 32,
-			out_channels = num_output,
+			out_channels = self.num_classes,
 			kernel_size = 1,
 			stride = 1,
 			padding = 0,
@@ -33,7 +34,7 @@ class insRegression(object):
 			bias = False
 		) 
 		self.bn1x1 = nn.BatchNorm2d(
-			num_features = num_output,
+			num_features = self.num_classes,
 			momentum = 1e-3
 		)
 
