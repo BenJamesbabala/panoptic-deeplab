@@ -4,7 +4,7 @@ import torch.nn as nn
 
 
 
-class insDecoder(object):
+class insDecoder(nn.Module):
 	"""
 	docstring for insDecoder
 	"""
