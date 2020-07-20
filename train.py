@@ -1,4 +1,4 @@
-from nets import ResnetBackbone
+from nets import ResnetBackbone, PSDL
 from utils import datasetCityScape
 
 import torch
@@ -11,7 +11,8 @@ if torch.cuda.is_available():
 	dev='cuda'
 
 # Loading the complete architecture here
-model = ResnetBackbone().to(dev)
+# model = ResnetBackbone().to(dev)
+model = PSDL().to(dev)
 print(model)
 
 
