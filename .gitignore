@@ -8,6 +8,7 @@ data/cityscapes/test/*
 
 # .DS_Store
 *.DS_Store
+**/.DS_Store
 
 # Keep the .gitkeep file
 !**/.gitkeep
