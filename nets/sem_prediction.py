@@ -1,13 +1,15 @@
 import torch
 import torch.nn as nn
 
-class semPrediction(object):
+class semPrediction(nn.Module):
 	"""
 	docstring for semPrediction
 	"""
 
 	def __init__(self):
-		super(semPrediction, self, num_output=1000).__init__()
+		super(semPrediction, self, num_classes=19).__init__() # num_classes=19 for CityScape Data
+
+		self.num_classes = num_classes
 
 		self.conv5x5 = nn.Conv2d(
 			in_channels = 256,
@@ -25,7 +27,7 @@ class semPrediction(object):
 
 		self.conv1x1 = nn.Conv2d(
 			in_channels = 256,
-			out_channels = num_output,
+			out_channels = self.num_classes,
 			kernel_size = 1,
 			stride = 1,
 			padding = 0,
@@ -33,7 +35,7 @@ class semPrediction(object):
 			bias = False
 		) 
 		self.bn1x1 = nn.BatchNorm2d(
-			num_features = num_output,
+			num_features = self.num_classes,
 			momentum = 1e-3
 		)
 
