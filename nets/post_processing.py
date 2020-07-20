@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-class postProcessing(object):
+class postProcessing(nn.Module):
 	"""
 	docstring for postProcessing
 	"""
