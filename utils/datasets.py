@@ -47,11 +47,10 @@ class cityscapeDataset(Dataset):
 		for ann in panoptic_info['annotations']:
 			ann_name = ann['file_name']
 			ann_name = os.path.join(self.root_dir, 'gtFine', 'cityscapes_panoptic_' + self.data_type + '_trainId',  ann_name)
-			self.anns_list.append(ann_name)
-			# self.labels.append(ann['segments_info'])
+			self.anns_list.append([ann_name, ann['segments_info']])
 
-        self.images_list = sorted(self.images_list) 
-        self.anns_list = sorted(self.anns_list)
+        self.images_list = sorted(self.images_list, key=lambda x: x[0]) 
+        self.anns_list = sorted(self.anns_list, key=lambda x: x[0])
 
 
     def __len__(self):
@@ -66,7 +65,7 @@ class cityscapeDataset(Dataset):
         img = Image.open(self.images_list[index]).convert('RGB')
         img_arr  = np.asarray(img) 
 
-        label = Image.open(self.anns_list[index])
+        label = Image.open(self.anns_list[index][0])
         label_arr = np.asarray(label, dtype=np.uint8)
 
 
@@ -76,15 +75,13 @@ class cityscapeDataset(Dataset):
         #     label_arr = transform(label_arr)
 
 
-        # Getting the labels here...
-        panoptic_converted_labels = self.get_labels(label_arr, self.anns_list[index]['segments_info'])
+        # Getting the panoptic labels here...
+        panoptic_converted_labels = self.get_labels(label_arr, self.anns_list[index][1])
 
 
         return img_arr, panoptic_converted_labels
 
 
-
-    @staticmethod
     def get_labels(label_arr, segments_info):
 
         label_id_img = rgb2id(label_arr)
@@ -99,7 +96,7 @@ class cityscapeDataset(Dataset):
         offset_weight_each_pixel = np.zeors((label_id_img.shape[0], label_id_img.shape[1], 1), dtype=np.uint8)
 
 
-        std = 8 # 8 Pixels
+        std = 8 # 8 Pixels from the paper
         x = np.arange(0, 6*std, 1, dtype=np.float32).reshape(1, 6*std)
         y = np.arange(0, 6*std, 1, dtype=np.float32).reshape(6 * std, 1)
         x0, y0 = 3*std, 3*std
