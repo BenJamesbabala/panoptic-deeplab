@@ -9,7 +9,7 @@ class PSDL(nn.Module):
 	"""
 	docstring for PSDL
 	"""
-	def __init__(self, num_classes):
+	def __init__(self, num_classes=19): # num_classes = 19 for CityScape data
 		super(PSDL, self).__init__()
 
 		self.num_classes = num_classes
