@@ -4,7 +4,7 @@ import torch.nn as nn
 
 
 
-class semDecoder(object):
+class semDecoder(nn.Module):
 	"""
 	docstring for semDecoder
 	"""
