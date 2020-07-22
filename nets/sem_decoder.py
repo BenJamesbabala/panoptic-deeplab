@@ -114,7 +114,7 @@ class semDecoder(nn.Module):
 			momentum = 1e-3
 		)
 
-		self.relu = nn.ReLU(inplace=true)
+		self.relu = nn.ReLU(inplace=True)
 
 
 		def forward(x, x1_8, x1_4):
