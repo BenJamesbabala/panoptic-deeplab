@@ -6,6 +6,9 @@ data/cityscapes/test/*
 # Json files
 *.json
 
+# .pth files
+*.pth
+
 # .DS_Store
 *.DS_Store
 **/.DS_Store
