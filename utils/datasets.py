@@ -76,13 +76,13 @@ class cityscapeDataset(Dataset):
 
 
         # Getting the panoptic labels here...
-        panoptic_converted_labels = self.get_labels(label_arr, self.anns_list[index][1])
+        panoptic_converted_labels = self.get_panoptic_labels(label_arr, self.anns_list[index][1])
 
 
         return img_arr, panoptic_converted_labels
 
 
-    def get_labels(label_arr, segments_info):
+    def get_panoptic_labels(label_arr, segments_info):
 
         label_id_img = rgb2id(label_arr)
         semantic_img = np.zeros_like(label_id_img, dtype=np.uint8) #+ 255
@@ -153,13 +153,13 @@ class cityscapeDataset(Dataset):
 
 
         labels = {
-            'semantic_img': semantic_img,
-            'instance_img': instance_img,
-            'centers': center_each_pixel,
-            'offsets': offset_each_pixel,
-            'sem_weights': sem_weight_each_pixel,
-            'center_weights': center_weight_each_pixel,
-            'offset_weights': offset_weight_each_pixel
+            'semantic_img': torch.from_numpy(semantic_img),
+            'instance_img': torch.from_numpy(instance_img),
+            'centers': torch.from_numpy(center_each_pixel),
+            'offsets': torch.from_numpy(offset_each_pixel),
+            'sem_weights': torch.from_numpy(sem_weight_each_pixel),
+            'center_weights': torch.from_numpy(center_weight_each_pixel),
+            'offset_weights': torch.from_numpy(offset_weight_each_pixel)
         }
 
         return labels
