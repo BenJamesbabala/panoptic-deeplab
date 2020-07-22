@@ -84,30 +84,30 @@ class insContextBlock(nn.Module):
 
 		self.relu = nn.ReLU(inplace=True)
 
-		def forward(self, x):
+	def forward(self, x):
 
-			x1 = self.conv1x1(x)
-			x1 = self.bn1x1(x1)
-			x1 = self.relu(x1)
+		x1 = self.conv1x1(x)
+		x1 = self.bn1x1(x1)
+		x1 = self.relu(x1)
 
-			x2 = self.conv3x3_6(x)
-			x2 = self.bn3x3_6(x2)
-			x2 = self.relu(x2)
+		x2 = self.conv3x3_6(x)
+		x2 = self.bn3x3_6(x2)
+		x2 = self.relu(x2)
 
-			x3 = self.conv3x3_12(x)
-			x3 = self.bn3x3_12(x3)
-			x3 = self.relu(x3)
+		x3 = self.conv3x3_12(x)
+		x3 = self.bn3x3_12(x3)
+		x3 = self.relu(x3)
 
-			x4 = self.conv3x3_18(x)
-			x4 = self.bn3x3_18(x4)
-			x4 = self.relu(x4)
+		x4 = self.conv3x3_18(x)
+		x4 = self.bn3x3_18(x4)
+		x4 = self.relu(x4)
 
-			# This is the image pooling (gloabl avg pooling + conv layers)
-			x5 = nn.avg_pool2d(x, x.size()[2:]) 
-			x5 = self.conv1x1_iPool(x5)
-			x5 = self.bn1x1_iPool(x5)
-			x5 = nn.Upsample(x.shape[2], x.shape[3], mode='bilinear', align_corners=True)(x5)
+		# This is the image pooling (gloabl avg pooling + conv layers)
+		x5 = nn.avg_pool2d(x, x.size()[2:]) 
+		x5 = self.conv1x1_iPool(x5)
+		x5 = self.bn1x1_iPool(x5)
+		x5 = nn.Upsample(x.shape[2], x.shape[3], mode='bilinear', align_corners=True)(x5)
 
-			x = torch.cat((x1, x2, x3, x4, x5), 1) # Concatenate all different features
+		x = torch.cat((x1, x2, x3, x4, x5), 1) # Concatenate all different features
 
-			return x
+		return x

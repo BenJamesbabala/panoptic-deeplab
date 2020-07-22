@@ -42,16 +42,16 @@ class insPrediction(nn.Module):
 		self.relu = nn.ReLU(inplace=True)
 		
 
-		def forward(x):
-			x = self.conv5x5(x)
-			x = self.bn5x5(x)
-			x = self.relu(x)
+	def forward(self, x):
+		x = self.conv5x5(x)
+		x = self.bn5x5(x)
+		x = self.relu(x)
 
-			x = self.conv1x1(x)
-			x = self.bn1x1(x)
-			x = self.relu(x)
+		x = self.conv1x1(x)
+		x = self.bn1x1(x)
+		x = self.relu(x)
 
-			return x
+		return x
 
 
 

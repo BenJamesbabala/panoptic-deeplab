@@ -117,52 +117,52 @@ class semDecoder(nn.Module):
 		self.relu = nn.ReLU(inplace=True)
 
 
-		def forward(x, x1_8, x1_4):
+	def forward(self, x, x1_8, x1_4):
 
-			x = self.conv1x1_1(x)
-			x = self.bn1x1_1(x)
-			x = self.relu(x)
+		x = self.conv1x1_1(x)
+		x = self.bn1x1_1(x)
+		x = self.relu(x)
 
-			# First Unsampling (to the block of 1/8th size)
-			x = nn.Upsample(x1_8.shape[2], x1_8.shape[3], mode='bilinear', align_corners=True)(x)
+		# First Unsampling (to the block of 1/8th size)
+		x = nn.Upsample(x1_8.shape[2], x1_8.shape[3], mode='bilinear', align_corners=True)(x)
 
-			# Red Line Conv Layer
-			x1_8 = self.conv1x1_3(x1_8)
-			x1_8 = self.bn1x1_3(x1_8)
-			x1_8 = self.relu(x1_8)
+		# Red Line Conv Layer
+		x1_8 = self.conv1x1_3(x1_8)
+		x1_8 = self.bn1x1_3(x1_8)
+		x1_8 = self.relu(x1_8)
 
-			# Concatenating
-			x = torch.cat((x, x1_8), 1) # Concatenating the first unsample and x1/8th(red line) output
+		# Concatenating
+		x = torch.cat((x, x1_8), 1) # Concatenating the first unsample and x1/8th(red line) output
 
-			# First DepthWise Separable Conv layer
-			x = self.dwconv5x5_1(x)
-			x = self.dwbn5x5_1(x)
-			x = self.relu(x)
-			x = self.pwconv_1(x)
-			x = self.pwbn_1(x)
-			x = self.relu(x)
+		# First DepthWise Separable Conv layer
+		x = self.dwconv5x5_1(x)
+		x = self.dwbn5x5_1(x)
+		x = self.relu(x)
+		x = self.pwconv_1(x)
+		x = self.pwbn_1(x)
+		x = self.relu(x)
 
-			# Second Unsampling (to the block of 1/4th size)
-			x = nn.Upsample(x1_4.shape[2], x1_4.shape[3], mode='bilinear', align_corners=True)(x)
+		# Second Unsampling (to the block of 1/4th size)
+		x = nn.Upsample(x1_4.shape[2], x1_4.shape[3], mode='bilinear', align_corners=True)(x)
 
-			# Blue Line Conv Layer
-			x1_4 = self.conv1x1_2(x1_4)
-			x1_4 = self.bn1x1_2(x1_4)
-			x1_4 = self.relu(x1_4)
+		# Blue Line Conv Layer
+		x1_4 = self.conv1x1_2(x1_4)
+		x1_4 = self.bn1x1_2(x1_4)
+		x1_4 = self.relu(x1_4)
 
-			# Concatenating
-			x = torch.cat((x, x1_4), 1) # Concatenating the second unsample and x1/4th(blue line) output
+		# Concatenating
+		x = torch.cat((x, x1_4), 1) # Concatenating the second unsample and x1/4th(blue line) output
 
-			# Second DepthWise Separable Conv layer
-			x = self.dwconv5x5_2(x)
-			x = self.dwbn5x5_2(x)
-			x = self.relu(x)
-			x = self.pwconv_2(x)
-			x = self.pwbn_2(x)
-			x = self.relu(x)
+		# Second DepthWise Separable Conv layer
+		x = self.dwconv5x5_2(x)
+		x = self.dwbn5x5_2(x)
+		x = self.relu(x)
+		x = self.pwconv_2(x)
+		x = self.pwbn_2(x)
+		x = self.relu(x)
 
 
-			return x
+		return x
 
 
 

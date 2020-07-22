@@ -10,3 +10,7 @@ class postProcessing(nn.Module):
 
 		self.arg = arg
 		
+
+	def forward(self, x):
+
+		return x
