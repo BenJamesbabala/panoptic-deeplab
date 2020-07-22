@@ -1,11 +1,11 @@
 import os
-import nunmpy as np
+import numpy as np
 from PIL import Image
 
 from torchvision import transforms
 from torch.utils.data import DataLoader
 
-from .dataset import cityscapeDataset
+from .data import cityscapeDataset
 
 
 
@@ -16,6 +16,8 @@ def get_train_loader(root_dir, data_type='train', num_classes=19, batch_size=16)
 		cityscapeDataset(
 			root_dir=root_dir,
 			data_type=data_type,
+			rgb2id=rgb2id,
+			transform=transform,
 			num_classes=num_classes),
 		batch_size=batch_size,
 		shuffle=True,
@@ -25,12 +27,14 @@ def get_train_loader(root_dir, data_type='train', num_classes=19, batch_size=16)
 
 
 
-def get_val_loader(root_dir, data_type='val', num_classes=19, batch_size=1)
+def get_val_loader(root_dir, data_type='val', num_classes=19, batch_size=1):
 
 	val_loader = DataLoader(
 		cityscapeDataset(
 			root_dir=root_dir,
 			data_type=data_type,
+			rgb2id=rgb2id,
+			transform=transform,
 			num_classes=num_classes),
 		batch_size=batch_size,
 		shuffle=False,
