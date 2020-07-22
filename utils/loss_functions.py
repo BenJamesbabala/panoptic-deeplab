@@ -3,7 +3,7 @@ import torch.nn as nn
 
 
 
-def weighted_bootstrapped_CEL(predictions, labels, weight=1.0, K=0.15, N=641*641):
+def weighted_bootstrapped_CEL(predictions, labels, weight=1.0, K=0.15, N=1025*2049):
 	'''
 	The Deafult args are for the 'COCO' dataset from the paper. 
 	They train it on the Images of size (641*641)
@@ -40,7 +40,34 @@ def l1_loss(pixels_coords, center_coords):
 	return nn.L1Loss(pixels_coords, center_coords)
 	
 
+def upsample_preds(sempred, inspred, insreg, upsample):
+	'''
+		We need to upsample the predictions to get similar size as input images
+	'''
+	
+	return upsample(sempred), upsample(inspred), upsample(insreg)
 
+
+def compute_loss(sempred, inspred, insreg, target, weight_semp=1.0, weight_insp=1.0, weight_insr=1.0):
+
+	'''
+	Compute the total loss value from all three components of the architecture
+	'''
+	input_shape = [target['semantic_img'].numpy().shape[0], target['semantic_img'].numpy().shape[1]]
+
+	upsample = nn.Upsample(input_shape[0], input_shape[1], mode='bilinear', align_corners=True)
+
+	sempred, inspred, insreg = upsample_preds(sempred, inspred, insreg, upsample)
+
+	semp_loss = weighted_bootstrapped_CEL(sempred, target['semantic_img']) * target['sem_weights']
+
+	insp_loss = mse_loss(inspred, target['centers']) * target['center_weights']
+
+	insr_loss = l1_loss(insreg, target['offsets']) * target['offset_weights']
+
+	total_loss = weight_semp*semp_loss + weight_insp*insp_loss + weight_insr*insr_loss
+
+	return total_loss
 
 
 
