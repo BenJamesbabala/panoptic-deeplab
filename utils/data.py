@@ -39,7 +39,7 @@ class cityscapeDataset(Dataset):
 
 		for img in panoptic_info['images']:
 			img_name = img['file_name']
-			img_name = os.path.join(self.root_dir, 'leftImg8bit', self.data_type + img_name.split('_')[0], img_name.replace('_gtFine', ''))
+			img_name = os.path.join(self.root_dir, 'leftImg8bit', self.data_type, img_name.split('_')[0], img_name.replace('_gtFine', ''))
 			self.images_list.append(img_name)
 
 		for ann in panoptic_info['annotations']:
