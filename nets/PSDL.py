@@ -23,7 +23,7 @@ class PSDL(nn.Module):
 		self.insregression = insRegression(num_classes=2)
 
 
-	def forward(x):
+	def forward(self, x):
 		
 		x1, x2, x_feat = self.backbone(x)
 		x_semcon = self.semcontext(x_feat)
