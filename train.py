@@ -49,7 +49,8 @@ def train_epoch(model, epoch, train_data_loader, optimizer):
 	for batch_idx, (data, target) in enumerate(train_data_loader):
 		
 		data = data.to(dev)
-		target = target.to(dev)
+		for key in target.keys():
+			target[key] = target[key].to(dev)
 
 		optimizer.zero_grad()
 
