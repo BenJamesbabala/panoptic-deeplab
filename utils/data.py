@@ -5,13 +5,9 @@ import glob
 import torch
 from torch.utils.data import Dataset
 
-from .util import read_image, transform, rgb2id, get_color_from_catId
-
 
 CITYSCAPE_TRAIN_TO_EVAL = [7, 8, 11, 12, 13, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 31, 32, 33]
 CITYSCAPES_THINGS_CATID = [11, 12, 13, 14, 15, 16, 17, 18]
-
-
 
 
 class cityscapeDataset(Dataset):
@@ -19,7 +15,7 @@ class cityscapeDataset(Dataset):
 	docstring for cityscapeDataset
 	"""
 
-	def __init__(self, root_dir, data_type, num_classes=19):
+	def __init__(self, root_dir, data_type, rgb2id, transform, num_classes=19):
 		super(cityscapeDataset, self).__init__()
 
 		self.root_dir = root_dir # Path to the COCO folder
