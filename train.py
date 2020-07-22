@@ -97,7 +97,7 @@ if __name__ == '__main__':
 	optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9, weight_decay=1e-4)
 
 	# Training...
-	for i in range(args.num_epcohs):
+	for epoch in range(args.num_epcohs):
 		train_epoch(model, epoch, train_data_loader, optimizer)
 		val_epochO(model, epoch, val_data_loader)
 
