@@ -6,8 +6,8 @@ class insPrediction(nn.Module):
 	docstring for insPrediction
 	"""
 
-	def __init__(self):
-		super(insPrediction, self, num_classes=1).__init__()
+	def __init__(self, num_classes=1):
+		super(insPrediction, self).__init__()
 
 		self.num_classes = num_classes
 

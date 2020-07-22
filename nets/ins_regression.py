@@ -6,8 +6,8 @@ class insRegression(nn.Module):
 	docstring for insRegression
 	"""
 
-	def __init__(self):
-		super(insRegression, self, num_classes=2).__init__()
+	def __init__(self, num_classes=2):
+		super(insRegression, self).__init__()
 		self.num_classes = num_classes
 
 		self.conv5x5 = nn.Conv2d(

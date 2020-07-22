@@ -9,8 +9,8 @@ class insContextBlock(nn.Module):
 	docstring for insContextBlock
 	"""
 	
-	def __init__(self):
-		super(insContextBlock, self, in_channels=2048).__init__()
+	def __init__(self, in_channels=2048):
+		super(insContextBlock, self).__init__()
 	
 		self.conv1x1 = nn.Conv2d(
 			in_channels = in_channels,

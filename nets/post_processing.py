@@ -8,4 +8,5 @@ class postProcessing(nn.Module):
 	def __init__(self, arg):
 		super(postProcessing, self).__init__()
 
+		self.arg = arg
 		

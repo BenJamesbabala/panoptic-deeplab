@@ -9,8 +9,8 @@ class insDecoder(nn.Module):
 	docstring for insDecoder
 	"""
 	
-	def __init__(self):
-		super(insDecoder, self, in_channels_context=256*5, in_channels_block1=256, in_channels_block2=512).__init__()
+	def __init__(self, in_channels_context=256*5, in_channels_block1=256, in_channels_block2=512):
+		super(insDecoder, self).__init__()
 
 		self.conv1x1_1 = nn.Conv2d( # For the features coming from the corresponding Context block
 			in_channels = in_channels_context,

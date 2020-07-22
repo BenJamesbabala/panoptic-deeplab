@@ -9,8 +9,8 @@ class semDecoder(nn.Module):
 	docstring for semDecoder
 	"""
 	
-	def __init__(self):
-		super(semDecoder, self, in_channels_context=256*5, in_channels_block1=256, in_channels_block2=512).__init__()
+	def __init__(self, in_channels_context=256*5, in_channels_block1=256, in_channels_block2=512):
+		super(semDecoder, self).__init__()
 
 		self.conv1x1_1 = nn.Conv2d( # For the features coming from the corresponding Context block
 			in_channels = in_channels_context,

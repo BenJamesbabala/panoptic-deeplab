@@ -6,8 +6,8 @@ class semPrediction(nn.Module):
 	docstring for semPrediction
 	"""
 
-	def __init__(self):
-		super(semPrediction, self, num_classes=19).__init__() # num_classes=19 for CityScape Data
+	def __init__(self, num_classes=19):
+		super(semPrediction, self).__init__() # num_classes=19 for CityScape Data
 
 		self.num_classes = num_classes
 

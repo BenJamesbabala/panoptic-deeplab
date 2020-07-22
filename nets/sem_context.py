@@ -9,8 +9,8 @@ class semContextBlock(nn.Module):
 	docstring for semContextBlock
 	"""
 	
-	def __init__(self):
-		super(semContextBlock, self, in_channels=2048).__init__()
+	def __init__(self, in_channels=2048):
+		super(semContextBlock, self).__init__()
 	
 		self.conv1x1 = nn.Conv2d(
 			in_channels = in_channels,
