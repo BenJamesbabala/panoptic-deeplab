@@ -93,7 +93,7 @@ class cityscapeDataset(Dataset):
 
         sem_weight_each_pixel = np.ones((label_id_img.shape[0], label_id_img.shape[1], 1), dtype=np.uint8)
         center_weight_each_pixel = np.zeros((label_id_img.shape[0], label_id_img.shape[1], 1), dtype=np.uint8)
-        offset_weight_each_pixel = np.zeors((label_id_img.shape[0], label_id_img.shape[1], 1), dtype=np.uint8)
+        offset_weight_each_pixel = np.zeros((label_id_img.shape[0], label_id_img.shape[1], 1), dtype=np.uint8)
 
 
         std = 8 # 8 Pixels from the paper
