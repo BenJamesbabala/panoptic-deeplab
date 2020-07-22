@@ -2,7 +2,7 @@ import os
 import numpy as np
 import glob
 import json
-import argparser
+import argparse
 
 import torch
 import torch.nn as nn
