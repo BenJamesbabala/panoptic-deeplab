@@ -118,7 +118,7 @@ class cityscapeDataset(Dataset):
 
                 ins_area = len(ins_pixels)
                 if ins_area < 64*64: # From Paper
-                    sem_weight_each_pixel[label_id_img == seg('id')] = 3
+                    sem_weight_each_pixel[label_id_img == seg['id']] = 3
 
                 # Add the 2D Gaussian to the center and handle the corners
 
