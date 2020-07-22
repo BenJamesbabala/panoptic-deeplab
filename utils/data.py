@@ -23,6 +23,8 @@ class cityscapeDataset(Dataset):
 		self.root_dir = root_dir # Path to the COCO folder
 		self.data_type = data_type # Train or Val or Test
         self.num_classes = num_classes
+        self.rgb2id = rgb2id
+        self.transform = transform
 
 
 		self.images_list = []
@@ -69,18 +71,18 @@ class cityscapeDataset(Dataset):
 
         # Need to check if the STD and MEAN will change labels and IDs
         # if self.data_type == 'train':
-        #     img_arr = transform(img_arr)
-        #     label_arr = transform(label_arr)
+        #     img_arr = self.transform(img_arr)
+        #     label_arr = self.transform(label_arr)
 
 
         # Getting the panoptic labels here...
-        panoptic_converted_labels = self.get_panoptic_labels(label_arr, self.anns_list[index][1])
+        panoptic_converted_labels = self.get_panoptic_labels(label_arr, self.anns_list[index][1], self.rgb2id)
 
 
         return img_arr, panoptic_converted_labels
 
 
-    def get_panoptic_labels(label_arr, segments_info):
+    def get_panoptic_labels(label_arr, segments_info, rgb2id):
 
         label_id_img = rgb2id(label_arr)
         semantic_img = np.zeros_like(label_id_img, dtype=np.uint8) #+ 255
