@@ -26,8 +26,8 @@ class cityscapeDataset(Dataset):
 
 		self.images_list = []
 		self.anns_list = []
-		self.data = [] 
-		self.labels = []
+		# self.data = [] 
+		# self.labels = []
 
 
         # self.images_list = sorted(glob.glob(os.path.join(self.root_dir, 'leftImg8bit', data_type, '*_leftImg8bit.png')))
@@ -51,7 +51,7 @@ class cityscapeDataset(Dataset):
 
 
     def __len__(self):
-        return len(self.labels)
+        return len(self.images_list)
 
 
 	def __getitem__(self, index):
