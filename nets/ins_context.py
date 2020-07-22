@@ -82,7 +82,7 @@ class insContextBlock(nn.Module):
 			momentum = 1e-3
 		)
 
-		self.relu = nn.ReLU(inplace=true)
+		self.relu = nn.ReLU(inplace=True)
 
 		def forward(self, x):
 
